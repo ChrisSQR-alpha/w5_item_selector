@@ -158,7 +158,6 @@ addTicketBtn.addEventListener("click", function (e) {
         }
         renderTicketArea();
     }
-
 })
 
 // 監聽：地區搜尋下拉選單事件 change
@@ -172,6 +171,18 @@ regionSearch.addEventListener("change", (e) => {
     console.log(regionValue);
     //把  value 丟給 renderTicketArea()
     renderTicketArea(regionValue);
+
+    let newDataNodeList = document.querySelectorAll(".form-group>div>input");
+    let newDataArray = Array.prototype.slice.call(newDataNodeList);
+    newDataArray.push(document.querySelector("#ticketRegion"));
+    newDataArray.push(document.querySelector("#ticketDescription")); 
+    newDataArray.forEach((item) => {
+        let itemId = item.id; // 陣列順序用的變數
+        targetItemMessage = document.querySelector(`#${itemId}-message`); // 抓DOM判斷是否為空值
+        console.log
+        //無論如何清掉紅色標記
+            targetItemMessage.innerHTML = ``;
+    })
 })
 
 function renderTicketArea(regionValue){
@@ -191,6 +202,5 @@ function renderTicketArea(regionValue){
         str += combineTicketCardArea(item);
     })
     ticketCardArea.innerHTML = str;
-    console.log(str);
 }
 
